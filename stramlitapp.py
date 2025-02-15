@@ -41,7 +41,7 @@ new_task = st.text_input("➕ Add a new task:", placeholder="Type your task here
 if st.button("Add Task"):
     if new_task.strip():
         st.session_state["tasks"].append({"task": new_task, "completed": False})
-        st.experimental_rerun()
+        st.rerun()  # ✅ Updated method
     else:
         st.warning("⚠️ Task cannot be empty!")
 
@@ -62,13 +62,13 @@ for i, task in enumerate(st.session_state["tasks"]):
         if not task["completed"]:
             if st.button(f"✅ Done {i}", key=f"complete_{i}"):
                 st.session_state["tasks"][i]["completed"] = True
-                st.experimental_rerun()
+                st.rerun()  # ✅ Updated method
     
     # ❌ Delete Task
     with col3:
         if st.button(f"🗑️ Delete {i}", key=f"delete_{i}"):
             del st.session_state["tasks"][i]
-            st.experimental_rerun()
+            st.rerun()  # ✅ Updated method
 
 # 🆘 Help Section
 with st.expander("ℹ️ Help"):
